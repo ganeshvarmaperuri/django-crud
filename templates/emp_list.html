@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>emp list</h1>
+
+<div class="container">
+    <div class="row">
+
+        <div class="card card-body">
+            <table class="table table-striped">
+            <thead class="black white-text">
+            <tr>
+                <th>Employee ID</th>
+                <th>Name</th>
+                <th>Mobile</th>
+                <th>Position</th>
+                <th>
+                    <a href="/emp_register" class="btn btn-sm btn-primary">Add New Emp</a>
+                </th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for employee in listofemployees %}
+            <tr>
+                <td>{{employee.emp_code}}</td>
+                <td>{{employee.name}}</td>
+                <td>{{employee.mobile}}</td>
+                <td>{{employee.position}}</td>
+                <td><a href="{% url 'update_emplist' employee.id %}" class="btn btn-sm btn-info" >Update</a></td>
+                <td>
+                    <form action="{% url 'delete_employee' employee.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor%}
+            </tbody>
+        </table>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+

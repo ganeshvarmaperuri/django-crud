@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<h1>Employee registration</h1>
+<div class="container">
+    <div class="col-md-6">
+        <form method="POST" class="text-left border border-light p-5">
+            {% csrf_token %}
+            {{form|crispy}}
+            <div class="row">
+                <div class="col-md-7">
+                    <button class="btn btn-info my-4 btn-block" type="submit">Submit</button>
+                </div>
+                <div class="col-md-5">
+                    <a class="btn btn-light my-4 btn-block" href="{% url 'emp_list'%}">Back to list</a>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+
+</div>
+{% endblock %}
